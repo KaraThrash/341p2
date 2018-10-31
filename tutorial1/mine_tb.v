@@ -1,4 +1,4 @@
-// Verilog test bench for example_3_1
+// Verilog test bench
 `timescale 1ns/100ps
 `include "mine.v"
 
