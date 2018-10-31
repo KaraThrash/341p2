@@ -1,0 +1,81 @@
+#! /util/verilog-0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 10;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x1f45440 .scope module, "mine_tb" "mine_tb" 2 5;
+ .timescale -9 -10;
+v0x1f68200_0 .net "A", 0 0, L_0x1f68900; 1 drivers
+v0x1f68490_0 .net "B", 0 0, L_0x1f689f0; 1 drivers
+v0x1f68540_0 .net "C", 0 0, L_0x1f68b30; 1 drivers
+v0x1f685f0_0 .net "D", 0 0, L_0x1f68c20; 1 drivers
+v0x1f686d0_0 .net "E", 0 0, L_0x1f69060; 1 drivers
+v0x1f68780_0 .net "F", 0 0, L_0x1f696a0; 1 drivers
+v0x1f68800_0 .net *"_s6", 3 0, L_0x1f68da0; 1 drivers
+v0x1f68880_0 .var/i "k", 31 0;
+L_0x1f68900 .part L_0x1f68da0, 3, 1;
+L_0x1f689f0 .part L_0x1f68da0, 2, 1;
+L_0x1f68b30 .part L_0x1f68da0, 1, 1;
+L_0x1f68c20 .part L_0x1f68da0, 0, 1;
+L_0x1f68da0 .part v0x1f68880_0, 0, 4;
+S_0x1f468a0 .scope module, "the_circuit" "mine" 2 11, 3 3, S_0x1f45440;
+ .timescale -9 -10;
+L_0x1f67eb0 .functor AND 1, L_0x1f689f0, L_0x1f68b30, C4<1>, C4<1>;
+L_0x1f68e40 .functor OR 1, L_0x1f68900, L_0x1f67eb0, C4<0>, C4<0>;
+L_0x1f68fd0 .functor AND 1, L_0x1f68ea0, L_0x1f68c20, C4<1>, C4<1>;
+L_0x1f69060 .functor OR 1, L_0x1f68e40, L_0x1f68fd0, C4<0>, C4<0>;
+L_0x1f69250 .functor AND 1, L_0x1f691b0, L_0x1f68b30, C4<1>, C4<1>;
+L_0x1f69430 .functor AND 1, L_0x1f689f0, L_0x1f69390, C4<1>, C4<1>;
+L_0x1f695c0 .functor AND 1, L_0x1f69430, L_0x1f69490, C4<1>, C4<1>;
+L_0x1f696a0 .functor OR 1, L_0x1f69250, L_0x1f695c0, C4<0>, C4<0>;
+v0x1f3ef60_0 .alias "A", 0 0, v0x1f68200_0;
+v0x1f67890_0 .alias "B", 0 0, v0x1f68490_0;
+v0x1f67930_0 .alias "C", 0 0, v0x1f68540_0;
+v0x1f679d0_0 .alias "D", 0 0, v0x1f685f0_0;
+v0x1f67a80_0 .alias "E", 0 0, v0x1f686d0_0;
+v0x1f67b20_0 .alias "F", 0 0, v0x1f68780_0;
+v0x1f67c00_0 .net *"_s0", 0 0, L_0x1f67eb0; 1 drivers
+v0x1f67ca0_0 .net *"_s11", 0 0, L_0x1f691b0; 1 drivers
+v0x1f67d90_0 .net *"_s12", 0 0, L_0x1f69250; 1 drivers
+v0x1f67e30_0 .net *"_s15", 0 0, L_0x1f69390; 1 drivers
+v0x1f67f30_0 .net *"_s16", 0 0, L_0x1f69430; 1 drivers
+v0x1f67fd0_0 .net *"_s19", 0 0, L_0x1f69490; 1 drivers
+v0x1f680e0_0 .net *"_s2", 0 0, L_0x1f68e40; 1 drivers
+v0x1f68180_0 .net *"_s20", 0 0, L_0x1f695c0; 1 drivers
+v0x1f682a0_0 .net *"_s5", 0 0, L_0x1f68ea0; 1 drivers
+v0x1f68340_0 .net *"_s6", 0 0, L_0x1f68fd0; 1 drivers
+L_0x1f68ea0 .reduce/nor L_0x1f689f0;
+L_0x1f691b0 .reduce/nor L_0x1f689f0;
+L_0x1f69390 .reduce/nor L_0x1f68b30;
+L_0x1f69490 .reduce/nor L_0x1f68c20;
+    .scope S_0x1f45440;
+T_0 ;
+    %set/v v0x1f68880_0, 0, 32;
+    %end;
+    .thread T_0;
+    .scope S_0x1f45440;
+T_1 ;
+    %vpi_call 2 15 "$dumpfile", "mine.vcd";
+    %vpi_call 2 16 "$dumpvars", 1'sb0, S_0x1f45440;
+    %set/v v0x1f68880_0, 0, 32;
+T_1.0 ;
+    %load/v 8, v0x1f68880_0, 32;
+   %cmpi/s 8, 8, 32;
+    %jmp/0xz T_1.1, 5;
+    %delay 100, 0;
+    %vpi_call 2 19 "$display", "from mine done testing case %d", v0x1f68880_0;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0x1f68880_0, 32;
+    %set/v v0x1f68880_0, 8, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_call 2 21 "$finish";
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "mine_tb.v";
+    "./mine.v";
