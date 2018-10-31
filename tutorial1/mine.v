@@ -1,13 +1,11 @@
 // Verilog model of circuit of Figure 3.35 in Digital Systems 5th ed.
 
-module mine(A, B, C, D, E);
+module mine(E, F, A, B, C, D);
 
-   output D, E;
-   input  A, B, C;
-   wire   w1;
+   output E, F;
+   input  A, B, C, D;
 
-   and G1(w1, A, B);
-   not G2(E, C);
-   or  G3(D, w1, E);
+   assign E = A || (B && C) || ((!B) && D);
+   assign F = ((!B) && C) || (B && (!C) && (!D));
 
 endmodule
