@@ -1,0 +1,174 @@
+#! /util/verilog-0.9.7/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision - 10;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x24f9510 .scope module, "mine_tb" "mine_tb" 2 5;
+ .timescale -9 -10;
+v0x251a7d0_0 .net "A", 0 0, L_0x251ae60; 1 drivers
+RS_0x7f9e6024c738 .resolv tri, L_0x251af00, L_0x251deb0, C4<z>, C4<z>;
+v0x251a890_0 .net8 "B", 0 0, RS_0x7f9e6024c738; 2 drivers
+RS_0x7f9e6024c0a8 .resolv tri, L_0x251aff0, L_0x251d500, C4<z>, C4<z>;
+v0x251a930_0 .net8 "C", 0 0, RS_0x7f9e6024c0a8; 2 drivers
+v0x251aa00_0 .net "D", 0 0, L_0x251b090; 1 drivers
+v0x251aad0_0 .net "E", 0 0, C4<z>; 0 drivers
+v0x251ab50_0 .net *"_s10", 2 0, C4<000>; 1 drivers
+v0x251ac30_0 .net *"_s15", 2 0, C4<000>; 1 drivers
+v0x251acd0_0 .net *"_s6", 3 0, L_0x251b1c0; 1 drivers
+v0x251adc0_0 .var/i "k", 31 0;
+L_0x251ae60 .part L_0x251b1c0, 3, 1;
+L_0x251af00 .part L_0x251b1c0, 2, 1;
+L_0x251aff0 .part L_0x251b1c0, 1, 1;
+L_0x251b090 .part L_0x251b1c0, 0, 1;
+L_0x251b1c0 .part v0x251adc0_0, 0, 4;
+L_0x251dcb0 .concat [ 1 3 0 0], C4<z>, C4<000>;
+L_0x251ddd0 .concat [ 1 3 0 0], L_0x251ae60, C4<000>;
+RS_0x7f9e6024c678 .resolv tri, L_0x251bbc0, L_0x251c590, L_0x251cff0, L_0x251db10;
+L_0x251deb0 .part RS_0x7f9e6024c678, 0, 1;
+S_0x24f9390 .scope module, "the_circuit" "mine" 2 11, 3 17, S_0x24f9510;
+ .timescale -9 -10;
+v0x251a3a0 .array "c", 0 3;
+v0x251a3a0_0 .net v0x251a3a0 0, 0 0, L_0x251b740; 1 drivers
+v0x251a3a0_1 .net v0x251a3a0 1, 0 0, L_0x251c110; 1 drivers
+v0x251a3a0_2 .net v0x251a3a0 2, 0 0, L_0x251cba0; 1 drivers
+v0x251a3a0_3 .net v0x251a3a0 3, 0 0, C4<z>; 0 drivers
+v0x251a550_0 .alias "cin", 0 0, v0x251aa00_0;
+v0x251a5d0_0 .alias "cout", 0 0, v0x251a930_0;
+v0x251a650_0 .net8 "s", 3 0, RS_0x7f9e6024c678; 4 drivers
+v0x251a6d0_0 .net "x", 3 0, L_0x251dcb0; 1 drivers
+v0x251a750_0 .net "y", 3 0, L_0x251ddd0; 1 drivers
+L_0x251b960 .part L_0x251dcb0, 0, 1;
+L_0x251ba90 .part L_0x251ddd0, 0, 1;
+L_0x251bbc0 .part/pv L_0x251b380, 0, 1, 4;
+L_0x251c330 .part L_0x251dcb0, 1, 1;
+L_0x251c460 .part L_0x251ddd0, 1, 1;
+L_0x251c590 .part/pv L_0x251bd30, 1, 1, 4;
+L_0x251cd90 .part L_0x251dcb0, 2, 1;
+L_0x251cec0 .part L_0x251ddd0, 2, 1;
+L_0x251cff0 .part/pv L_0x251c7b0, 2, 1, 4;
+L_0x251d730 .part L_0x251dcb0, 3, 1;
+L_0x251d950 .part L_0x251ddd0, 3, 1;
+L_0x251db10 .part/pv L_0x251d0f0, 3, 1, 4;
+S_0x2519cd0 .scope module, "f0" "oneadder" 3 23, 3 3, S_0x24f9390;
+ .timescale -9 -10;
+L_0x251b290/d .functor XOR 1, L_0x251b960, L_0x251ba90, C4<0>, C4<0>;
+L_0x251b290 .delay (10,10,10) L_0x251b290/d;
+L_0x251b380/d .functor XOR 1, L_0x251b290, L_0x251b090, C4<0>, C4<0>;
+L_0x251b380 .delay (10,10,10) L_0x251b380/d;
+L_0x251b4e0/d .functor AND 1, L_0x251b090, L_0x251ba90, C4<1>, C4<1>;
+L_0x251b4e0 .delay (10,10,10) L_0x251b4e0/d;
+L_0x251b580/d .functor AND 1, L_0x251b090, L_0x251b960, C4<1>, C4<1>;
+L_0x251b580 .delay (10,10,10) L_0x251b580/d;
+L_0x251b670/d .functor AND 1, L_0x251b960, L_0x251ba90, C4<1>, C4<1>;
+L_0x251b670 .delay (10,10,10) L_0x251b670/d;
+L_0x251b740/d .functor OR 1, L_0x251b4e0, L_0x251b580, L_0x251b670, C4<0>;
+L_0x251b740 .delay (10,10,10) L_0x251b740/d;
+v0x2519dc0_0 .net "a", 0 0, L_0x251b960; 1 drivers
+v0x2519e80_0 .net "b", 0 0, L_0x251ba90; 1 drivers
+v0x2519f20_0 .alias "c", 0 0, v0x251aa00_0;
+v0x2519fc0_0 .alias "cout", 0 0, v0x251a3a0_0;
+v0x251a070_0 .net "s", 0 0, L_0x251b380; 1 drivers
+v0x251a0f0_0 .net "w1", 0 0, L_0x251b290; 1 drivers
+v0x251a170_0 .net "w2", 0 0, L_0x251b4e0; 1 drivers
+v0x251a210_0 .net "w3", 0 0, L_0x251b580; 1 drivers
+v0x251a300_0 .net "w4", 0 0, L_0x251b670; 1 drivers
+S_0x2519600 .scope module, "f1" "oneadder" 3 24, 3 3, S_0x24f9390;
+ .timescale -9 -10;
+L_0x251bc60/d .functor XOR 1, L_0x251c330, L_0x251c460, C4<0>, C4<0>;
+L_0x251bc60 .delay (10,10,10) L_0x251bc60/d;
+L_0x251bd30/d .functor XOR 1, L_0x251bc60, L_0x251b740, C4<0>, C4<0>;
+L_0x251bd30 .delay (10,10,10) L_0x251bd30/d;
+L_0x251be90/d .functor AND 1, L_0x251b740, L_0x251c460, C4<1>, C4<1>;
+L_0x251be90 .delay (10,10,10) L_0x251be90/d;
+L_0x251bf30/d .functor AND 1, L_0x251b740, L_0x251c330, C4<1>, C4<1>;
+L_0x251bf30 .delay (10,10,10) L_0x251bf30/d;
+L_0x251c040/d .functor AND 1, L_0x251c330, L_0x251c460, C4<1>, C4<1>;
+L_0x251c040 .delay (10,10,10) L_0x251c040/d;
+L_0x251c110/d .functor OR 1, L_0x251be90, L_0x251bf30, L_0x251c040, C4<0>;
+L_0x251c110 .delay (10,10,10) L_0x251c110/d;
+v0x25196f0_0 .net "a", 0 0, L_0x251c330; 1 drivers
+v0x25197b0_0 .net "b", 0 0, L_0x251c460; 1 drivers
+v0x2519850_0 .alias "c", 0 0, v0x251a3a0_0;
+v0x25198f0_0 .alias "cout", 0 0, v0x251a3a0_1;
+v0x25199a0_0 .net "s", 0 0, L_0x251bd30; 1 drivers
+v0x2519a20_0 .net "w1", 0 0, L_0x251bc60; 1 drivers
+v0x2519aa0_0 .net "w2", 0 0, L_0x251be90; 1 drivers
+v0x2519b40_0 .net "w3", 0 0, L_0x251bf30; 1 drivers
+v0x2519c30_0 .net "w4", 0 0, L_0x251c040; 1 drivers
+S_0x2518f30 .scope module, "f2" "oneadder" 3 25, 3 3, S_0x24f9390;
+ .timescale -9 -10;
+L_0x251c710/d .functor XOR 1, L_0x251cd90, L_0x251cec0, C4<0>, C4<0>;
+L_0x251c710 .delay (10,10,10) L_0x251c710/d;
+L_0x251c7b0/d .functor XOR 1, L_0x251c710, L_0x251c110, C4<0>, C4<0>;
+L_0x251c7b0 .delay (10,10,10) L_0x251c7b0/d;
+L_0x251c930/d .functor AND 1, L_0x251c110, L_0x251cec0, C4<1>, C4<1>;
+L_0x251c930 .delay (10,10,10) L_0x251c930/d;
+L_0x251c9f0/d .functor AND 1, L_0x251c110, L_0x251cd90, C4<1>, C4<1>;
+L_0x251c9f0 .delay (10,10,10) L_0x251c9f0/d;
+L_0x251cb00/d .functor AND 1, L_0x251cd90, L_0x251cec0, C4<1>, C4<1>;
+L_0x251cb00 .delay (10,10,10) L_0x251cb00/d;
+L_0x251cba0/d .functor OR 1, L_0x251c930, L_0x251c9f0, L_0x251cb00, C4<0>;
+L_0x251cba0 .delay (10,10,10) L_0x251cba0/d;
+v0x2519020_0 .net "a", 0 0, L_0x251cd90; 1 drivers
+v0x25190e0_0 .net "b", 0 0, L_0x251cec0; 1 drivers
+v0x2519180_0 .alias "c", 0 0, v0x251a3a0_1;
+v0x2519220_0 .alias "cout", 0 0, v0x251a3a0_2;
+v0x25192d0_0 .net "s", 0 0, L_0x251c7b0; 1 drivers
+v0x2519350_0 .net "w1", 0 0, L_0x251c710; 1 drivers
+v0x25193d0_0 .net "w2", 0 0, L_0x251c930; 1 drivers
+v0x2519470_0 .net "w3", 0 0, L_0x251c9f0; 1 drivers
+v0x2519560_0 .net "w4", 0 0, L_0x251cb00; 1 drivers
+S_0x24f8730 .scope module, "f3" "oneadder" 3 26, 3 3, S_0x24f9390;
+ .timescale -9 -10;
+L_0x251d090/d .functor XOR 1, L_0x251d730, L_0x251d950, C4<0>, C4<0>;
+L_0x251d090 .delay (10,10,10) L_0x251d090/d;
+L_0x251d0f0/d .functor XOR 1, L_0x251d090, L_0x251cba0, C4<0>, C4<0>;
+L_0x251d0f0 .delay (10,10,10) L_0x251d0f0/d;
+L_0x251d290/d .functor AND 1, L_0x251cba0, L_0x251d950, C4<1>, C4<1>;
+L_0x251d290 .delay (10,10,10) L_0x251d290/d;
+L_0x251d350/d .functor AND 1, L_0x251cba0, L_0x251d730, C4<1>, C4<1>;
+L_0x251d350 .delay (10,10,10) L_0x251d350/d;
+L_0x251d460/d .functor AND 1, L_0x251d730, L_0x251d950, C4<1>, C4<1>;
+L_0x251d460 .delay (10,10,10) L_0x251d460/d;
+L_0x251d500/d .functor OR 1, L_0x251d290, L_0x251d350, L_0x251d460, C4<0>;
+L_0x251d500 .delay (10,10,10) L_0x251d500/d;
+v0x24f4310_0 .net "a", 0 0, L_0x251d730; 1 drivers
+v0x2518990_0 .net "b", 0 0, L_0x251d950; 1 drivers
+v0x2518a30_0 .alias "c", 0 0, v0x251a3a0_2;
+v0x2518ad0_0 .alias "cout", 0 0, v0x251a930_0;
+v0x2518b80_0 .net "s", 0 0, L_0x251d0f0; 1 drivers
+v0x2518c20_0 .net "w1", 0 0, L_0x251d090; 1 drivers
+v0x2518d00_0 .net "w2", 0 0, L_0x251d290; 1 drivers
+v0x2518da0_0 .net "w3", 0 0, L_0x251d350; 1 drivers
+v0x2518e90_0 .net "w4", 0 0, L_0x251d460; 1 drivers
+    .scope S_0x24f9510;
+T_0 ;
+    %set/v v0x251adc0_0, 0, 32;
+    %end;
+    .thread T_0;
+    .scope S_0x24f9510;
+T_1 ;
+    %vpi_call 2 15 "$dumpfile", "mine.vcd";
+    %vpi_call 2 16 "$dumpvars", 1'sb0, S_0x24f9510;
+    %set/v v0x251adc0_0, 0, 32;
+T_1.0 ;
+    %load/v 8, v0x251adc0_0, 32;
+   %cmpi/s 8, 8, 32;
+    %jmp/0xz T_1.1, 5;
+    %delay 100, 0;
+    %vpi_call 2 19 "$display", "from mine done testing case %d", v0x251adc0_0;
+    %ix/load 0, 1, 0;
+    %load/vp0/s 8, v0x251adc0_0, 32;
+    %set/v v0x251adc0_0, 8, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_call 2 21 "$finish";
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "mine_tb.v";
+    "./mine.v";
