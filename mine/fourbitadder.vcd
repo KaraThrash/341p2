@@ -1,5 +1,5 @@
 $date
-	Fri Nov  2 17:21:07 2018
+	Fri Nov  2 17:33:57 2018
 $end
 $version
 	Icarus Verilog
@@ -15,15 +15,15 @@ $var wire 1 $ D $end
 $var wire 1 % E $end
 $var integer 32 & k [31:0] $end
 $scope module the_circuit $end
-$var wire 1 $ cin $end
-$var wire 1 # cout $end
+$var wire 1 % cin $end
+$var wire 1 $ cout $end
 $var wire 4 ' s [3:0] $end
 $var wire 4 ( x [3:0] $end
 $var wire 4 ) y [3:0] $end
 $scope module f0 $end
 $var wire 1 * a $end
 $var wire 1 + b $end
-$var wire 1 $ c $end
+$var wire 1 % c $end
 $var wire 1 , cout $end
 $var wire 1 - s $end
 $var wire 1 . w1 $end
@@ -57,7 +57,7 @@ $scope module f3 $end
 $var wire 1 B a $end
 $var wire 1 C b $end
 $var wire 1 < c $end
-$var wire 1 # cout $end
+$var wire 1 $ cout $end
 $var wire 1 D s $end
 $var wire 1 E w1 $end
 $var wire 1 F w2 $end
@@ -88,86 +88,81 @@ $dumpvars
 08
 07
 06
-05
+x5
 04
 03
 02
 01
 00
-0/
+x/
 x.
 x-
-0,
-0+
-z*
-b0 )
-b0z (
-b0x '
+x,
+z+
+0*
+b0z )
+b0 (
+b0xx '
 b0 &
 z%
 0$
-0#
-x"
+x#
+z"
 0!
 $end
 #100
-x5
-b0xx '
-x,
 x0
-1$
+x1
+1*
+b1 (
+1!
 b1 &
 #200
-05
-b0x '
-0,
 00
-0$
-x#
+01
+0*
+b0 (
+0!
 b10 &
 #300
-x5
-b0xx '
-x,
 x0
-1$
+x1
+1*
+b1 (
+1!
 b11 &
 #400
-05
-b0x '
-0,
 00
-0$
-0#
+01
+0*
+b0 (
+0!
 b100 &
 #500
-x5
-b0xx '
-x,
 x0
-1$
+x1
+1*
+b1 (
+1!
 b101 &
 #600
-05
-b0x '
-0,
 00
-0$
-x#
+01
+0*
+b0 (
+0!
 b110 &
 #700
-x5
-b0xx '
-x,
 x0
-1$
+x1
+1*
+b1 (
+1!
 b111 &
 #800
-x1
 00
-1+
-0$
-0#
-b1 )
-1!
+01
+0*
+b0 (
+0!
 b1000 &
