@@ -1,17 +1,17 @@
 // Verilog model of circuit of Figure 3.35 in Digital Systems 5th ed.
 
 module oneadder(a,b,c,s,cout);
- input a,b,c;
- output s,cout;
- xor #1
- g1(w1, a, b),
- g2(s, w1, c);
- and #1
- g3(w2, c, b),
- g4(w3, c, a),
- g5(w4, a, b);
- or #1
- g6(cout, w2, w3, w4);
+input a,b,c;
+output s,cout;
+wire w1, w2, w3, w4, s, cout;
+reg a, b, c;
+
+xor g1(w1, a, b),
+xor g2(s, w1, c);
+ and g3(w2, c, b),
+ and g4(w3, c, a),
+ and g5(w4, a, b);
+or g6(cout, w2, w3, w4);
 endmodule
 
 module mine(x,y,s,cout,cin);
