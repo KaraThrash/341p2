@@ -1,30 +1,33 @@
 // Verilog test bench
 `timescale 1ns/100ps
-`include "mine.v"
+`include "alu.v"
 
-module mine_tb;
+module alu_tb;
 
 wire[15:0] aa;
 wire[15:0] bb;
 wire[15:0] runsum;
 wire[15:0] sum;
+wire[3:0] op;
 wire c_out;
 wire A, B, C, D, E;
+
 integer k=0;
 
 assign {aa} = k;
-assign {bb} = 0;
-assign {E} = 0;
+assign {bb} = 2 ;
+assign {op} =  110;
+
 assign runsum = sum;
-mine the_circuit(bb,aa, sum, c_out, E);
+aluIn the_circuit(aa,bb, op,sum);
 
    initial begin
 	
-      $dumpfile("mine.vcd");
-      $dumpvars(0, mine_tb);
+      $dumpfile("alu.vcd");
+      $dumpvars(0, alu_tb);
 $display("first %b", aa);
-      for (k=0; k<8; k=k+1)
-        #10 $display("from mine doe %b as welel as %b", runsum,bb);
+      for (k=0; k<10; k=k+1)
+        #10 $display("Sum is %b",runsum);
        $display("other %b", runsum);
 
       $finish;
