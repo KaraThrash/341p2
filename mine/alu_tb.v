@@ -5,31 +5,27 @@
 module alu_tb;
 
 wire[15:0] aa;
-wire[15:0] bb;
+wire[15:0] bb ;
 wire[15:0] runsum;
 wire[15:0] sum;
-wire[3:0] op;
-wire c_out;
-wire A, B, C, D, E;
+wire[2:0] op;
 
 integer k=0;
 
-assign {aa} = k;
-assign {bb} = 2 ;
-assign {op} =  110;
+assign {aa} = k ;
+assign {bb} = k + 1;
+assign {op} =  111;
 aluIn the_circuit(aa,bb, op,sum);
 
    initial begin
-	
+	//bb = 1;
       $dumpfile("alu.vcd");
-      $dumpvars(0, alu_tb);
+     $dumpvars(0, alu_tb);
    // $monitor("other %b", aa);
-$display("first %b", aa);
-      for (k=0; k<10; k=k+1)
-       #10  $display("output: %b <> A:%b <> B: %b",sum,aa,bb);
 
-
-      $finish;
+     for (k=0; k<10; k=k+1)
+         #10 $display($time,,,,"output: %b <> A:%b <> B: %b",sum,aa,bb);
+ 
 
    end
 

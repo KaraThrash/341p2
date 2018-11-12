@@ -63,10 +63,9 @@ and a14(s[14],x[14],y[14]);
 and a15(s[15],x[15],y[15]);
 endmodule
 
-module ormod(x,y,s,opcode);
+module ormod(x,y,s);
 input [15:0] y;
 input [15:0] x;
-input [2:0] opcode;
 output [15:0] s;
 or a0(s[0],x[0],y[0]);
 or a1(s[1],x[1],y[1]);
@@ -85,6 +84,9 @@ or a13(s[13],x[13],y[13]);
 or a14(s[14],x[14],y[14]);
 or a15(s[15],x[15],y[15]);
 endmodule
+
+
+
 
 module subtract(x,y,s,cin);
 input [15:0] y;
@@ -132,6 +134,7 @@ input [15:0] x;
 input [2:0]opcode;
 output [15:0] s;
 wire extra;
+wire [15:0]sltres;
 wire [15:0]andres;
 wire [15:0]orres;
 wire [15:0]addres;
@@ -145,15 +148,16 @@ output cout;
 andmod and0(x,y,andres,opcode);
 muxselector andmux(andres,~opcode[0],~opcode[1],~opcode[2],andres2);
 
-ormod or0(x,y,orres,opcode);
+ormod or0(x,y,orres);
 muxselector ormux(orres,opcode[0],~opcode[1],~opcode[2],orres2);
 fulladder addition(x,y,addres,cout,1'b0);
 muxselector addmux(addres,~opcode[0],opcode[1],~opcode[2],addres2);
 subtract fulladd(x,y,subres,opcode[2]);
+and slt(sltres[0],opcode[0],opcode[1],opcode[2],subres[8]);
 muxselector submux(subres,~opcode[0],opcode[1],opcode[2],subres2);
 
 
-or aluresult(s[0],andres2[0],orres2[0],addres2[0],subres2[0]);
+or  aluresult(s[0],andres2[0],orres2[0],addres2[0],subres2[0],sltres[0]);
 or aluresult(s[1],andres2[1],orres2[1],addres2[1],subres2[1]);
 or aluresult(s[2],andres2[2],orres2[2],addres2[2],subres2[2]);
 or aluresult(s[3],andres2[3],orres2[3],addres2[3],subres2[3]);
