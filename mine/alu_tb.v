@@ -1,5 +1,5 @@
 // Verilog test bench
-`timescale 1ns/100ps
+`timescale 1ns/10ps
 `include "alu.v"
 
 module alu_tb;
@@ -17,18 +17,17 @@ integer k=0;
 assign {aa} = k;
 assign {bb} = 2 ;
 assign {op} =  110;
-
-assign runsum = sum;
 aluIn the_circuit(aa,bb, op,sum);
 
    initial begin
 	
       $dumpfile("alu.vcd");
       $dumpvars(0, alu_tb);
+   // $monitor("other %b", aa);
 $display("first %b", aa);
       for (k=0; k<10; k=k+1)
-        #10 $display("Sum is %b",runsum);
-       $display("other %b", runsum);
+       #10  $display("output: %b <> A:%b <> B: %b",sum,aa,bb);
+
 
       $finish;
 

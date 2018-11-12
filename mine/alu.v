@@ -1,4 +1,4 @@
-// Verilog model of circuit of Figure 3.35 in Digital Systems 5th ed.
+
 
 module oneadder(a,b,c,s,cout);
 input a,b,c;
@@ -40,7 +40,51 @@ oneadder f12 (x[12],y[12],c[12],s[12],c[12]);
  oneadder f15 (x[15],y[15],c[15],s[15],cout);
 endmodule
 
+module andmod(x,y,s,opcode);
+input [15:0] y;
+input [15:0] x;
+input [2:0] opcode;
+output [15:0] s;
+and a0(s[0],x[0],y[0]);
+and a1(s[1],x[1],y[1]);
+and a2(s[2],x[2],y[2]);
+and a3(s[3],x[3],y[3]);
+and a4(s[4],x[4],y[4]);
+and a5(s[5],x[5],y[5]);
+and a6(s[6],x[6],y[6]);
+and a7(s[7],x[7],y[7]);
+and a8(s[8],x[8],y[8]);
+and a9(s[9],x[9],y[9]);
+and a10(s[10],x[10],y[10]);
+and a11(s[11],x[11],y[11]);
+and a12(s[12],x[12],y[12]);
+and a13(s[13],x[13],y[13]);
+and a14(s[14],x[14],y[14]);
+and a15(s[15],x[15],y[15]);
+endmodule
 
+module ormod(x,y,s,opcode);
+input [15:0] y;
+input [15:0] x;
+input [2:0] opcode;
+output [15:0] s;
+or a0(s[0],x[0],y[0]);
+or a1(s[1],x[1],y[1]);
+or a2(s[2],x[2],y[2]);
+or a3(s[3],x[3],y[3]);
+or a4(s[4],x[4],y[4]);
+or a5(s[5],x[5],y[5]);
+or a6(s[6],x[6],y[6]);
+or a7(s[7],x[7],y[7]);
+or a8(s[8],x[8],y[8]);
+or a9(s[9],x[9],y[9]);
+or a10(s[10],x[10],y[10]);
+or a11(s[11],x[11],y[11]);
+or a12(s[12],x[12],y[12]);
+or a13(s[13],x[13],y[13]);
+or a14(s[14],x[14],y[14]);
+or a15(s[15],x[15],y[15]);
+endmodule
 
 module subtract(x,y,s,cin);
 input [15:0] y;
@@ -50,15 +94,37 @@ output [15:0]ycomp;
 input [15:0]cin;
 output [15:0]c;
 input [15:0]yneg;
-assign{one} = 1;
-//assign{zero} = 0;
-integer zero = 1;
-//integer kone = 16'b1;
-fulladder fulladd(y,zero,ycomp,c,cin);
-assign{yneg} = ~ycomp;
-fulladder fulladd2(x,yneg,s,cout,zero);
+integer zero = 0;
+assign{yneg} = ~y;
+fulladder fulladd(yneg,zero,ycomp,c,cin);
+fulladder fulladd2(x,ycomp,s,cout,zero);
+
 endmodule
 
+module muxselector(funcitonin,op0,op1,op2,soutput);
+input [15:0] funcitonin;
+input op0,op1,op2;
+output [15:0] soutput;
+and s1(soutput[0],funcitonin[0],op0,op1,op2);
+and s1(soutput[1],funcitonin[1],op0,op1,op2);
+and s1(soutput[2],funcitonin[2],op0,op1,op2);
+and s1(soutput[3],funcitonin[3],op0,op1,op2);
+and s1(soutput[4],funcitonin[4],op0,op1,op2);
+and s1(soutput[5],funcitonin[5],op0,op1,op2);
+and s1(soutput[6],funcitonin[6],op0,op1,op2);
+and s1(soutput[7],funcitonin[7],op0,op1,op2);
+and s1(soutput[8],funcitonin[8],op0,op1,op2);
+and s1(soutput[9],funcitonin[9],op0,op1,op2);
+and s1(soutput[10],funcitonin[10],op0,op1,op2);
+and s1(soutput[11],funcitonin[11],op0,op1,op2);
+and s1(soutput[12],funcitonin[12],op0,op1,op2);
+and s1(soutput[13],funcitonin[13],op0,op1,op2);
+and s1(soutput[14],funcitonin[14],op0,op1,op2);
+and s1(soutput[15],funcitonin[15],op0,op1,op2);
+
+
+
+endmodule
 
 module aluIn(x,y,opcode,s);
 input [15:0] y;
@@ -66,12 +132,44 @@ input [15:0] x;
 input [2:0]opcode;
 output [15:0] s;
 wire extra;
-wire yneg[15:0] ;
-
+wire [15:0]andres;
+wire [15:0]orres;
+wire [15:0]addres;
+wire [15:0]subres;
+wire [15:0]andres2;
+wire [15:0]orres2;
+wire [15:0]addres2;
+wire [15:0]subres2;
 output cout;
 
-//negate negfun(x,y,yneg,cout,cin);
- //oneadder f0 (x[0],yneg[0],cin,s[0],c[0]);
-subtract fulladd(x,y,s,opcode[2]);
+andmod and0(x,y,andres,opcode);
+muxselector andmux(andres,~opcode[0],~opcode[1],~opcode[2],andres2);
 
+ormod or0(x,y,orres,opcode);
+muxselector ormux(orres,opcode[0],~opcode[1],~opcode[2],orres2);
+fulladder addition(x,y,addres,cout,1'b0);
+muxselector addmux(addres,~opcode[0],opcode[1],~opcode[2],addres2);
+subtract fulladd(x,y,subres,opcode[2]);
+muxselector submux(subres,~opcode[0],opcode[1],opcode[2],subres2);
+
+
+or aluresult(s[0],andres2[0],orres2[0],addres2[0],subres2[0]);
+or aluresult(s[1],andres2[1],orres2[1],addres2[1],subres2[1]);
+or aluresult(s[2],andres2[2],orres2[2],addres2[2],subres2[2]);
+or aluresult(s[3],andres2[3],orres2[3],addres2[3],subres2[3]);
+
+or aluresult(s[4],andres2[4],orres2[4],addres2[4],subres2[4]);
+or aluresult(s[5],andres2[5],orres2[5],addres2[5],subres2[5]);
+or aluresult(s[6],andres2[6],orres2[6],addres2[6],subres2[6]);
+or aluresult(s[7],andres2[7],orres2[7],addres2[7],subres2[7]);
+
+or aluresult(s[8],andres2[8],orres2[8],addres2[8],subres2[8]);
+or aluresult(s[9],andres2[9],orres2[9],addres2[9],subres2[9]);
+or aluresult(s[10],andres2[10],orres2[10],addres2[10],subres2[10]);
+or aluresult(s[11],andres2[11],orres2[11],addres2[11],subres2[11]);
+
+or aluresult(s[12],andres2[12],orres2[12],addres2[12],subres2[12]);
+or aluresult(s[13],andres2[13],orres2[13],addres2[13],subres2[13]);
+or aluresult(s[14],andres2[14],orres2[14],addres2[14],subres2[14]);
+or aluresult(s[15],andres2[15],orres2[15],addres2[15],subres2[15]);
 endmodule 
