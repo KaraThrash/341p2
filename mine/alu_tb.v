@@ -13,8 +13,8 @@ wire[2:0] op;
 integer k=0;
 
 assign {aa} = k ;
-assign {bb} = k + 1;
-assign {op} =  111;
+assign {bb} = 1;
+assign {op} =  110;
 aluIn the_circuit(aa,bb, op,sum);
 
    initial begin
