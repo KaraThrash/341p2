@@ -1,5 +1,13 @@
-dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl 1 -l1-uccc -informat D < prog_trace.din > results.txtdineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl 1 -l1-uccc -informat D < prog_trace.din > results.txt
+dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l1-uccc -informat D < prog_trace.din > results.txt
 
-dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl 1 -l0-uccc -informat D < prog_trace.din > results.txtdineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl 1 -l1-uccc -informat D < prog_trace.din > results.txt
+dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l1-uccc -informat D < prog_trace.din > results.txt
 
-dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl 1 -l1-uccc -informat D < prog_trace.din > results.txtdineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl 1 -l1-uccc '< prog_trace.din' '> results.txt'
+dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l0-uccc -informat D < prog_trace.din > results.txt
+
+dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l1-uccc -informat D < prog_trace.din > results.txt
+
+dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl l -l1-uccc -informat D < prog_trace.din > results.txt
+
+dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l1-uccc '< prog_trace.din' '> results.txt'
+
+dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l1-uccc < prog_trace.din > results.txt
