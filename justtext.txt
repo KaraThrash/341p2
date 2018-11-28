@@ -10,4 +10,7 @@ dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl l -l1-uccc -informa
 
 dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l1-uccc '< prog_trace.din' '> results.txt'
 
-dineroIV -l1-ubsize 64 -l1-usize 512k -l1-uassoc 4 -l1-urepl l -l1-uccc < prog_trace.din > results.txt
+dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl l -l1-uccc < prog_trace.din > results.txt
+
+>>>wordks
+dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl l -l1-uccc < prog_trace.din > results.txt
