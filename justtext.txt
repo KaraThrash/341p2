@@ -16,3 +16,17 @@ dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl l -l1-uccc < prog_t
 dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl l -l1-uccc < prog_trace.din > results.txt
 
 dineroIV -l1-ubsize 16 -l1-usize 512k -l1-uassoc 1 -l1-urepl l -l1-uccc -l2-ubsize 128 -l2-usize 1024 -l2-uassoc 1 -l2-urepl l -l2-uccc < prog_trace.din > results3.txt
+
+
+dineroIV -l1-ubsize 16 -l1-usize 64 -l1-uassoc 1 -l1-urepl l -l1-uccc < prog_trace.din > results64_16.txt
+
+dineroIV -l1-ubsize 16 -l1-usize 64 -l1-uassoc 1 -l1-urepl l -l1-uccc -l2-ubsize 128 -l2-usize 1024 -l2-uassoc 1 -l2-urepl l -l2-uccc < prog_trace.din > 2results64_16.txt
+
+dineroIV -l1-ubsize 16 -l1-usize 64 -l1-uassoc 2 -l1-urepl l -l1-uccc < prog_trace.din > results2way.txt
+dineroIV -l1-ubsize 16 -l1-usize 64 -l1-uassoc 4 -l1-urepl l -l1-uccc < prog_trace.din > resultsfully.txt
+
+dineroIV -l1-ubsize 16 -l1-usize 64 -l1-uassoc 1 -l1-urepl l -l1-uccc -informat D < prog_trace.din > resultinformatd.txt
+
+dineroIV -l1-ubsize 16 -l1-usize 1024 -l1-uassoc 4 -l1-urepl l -l1-uccc -l2-ubsize 128 -l2-usize 1024 -l2-uassoc 1 -l2-urepl l -l2-uccc < prog_trace.din > main1.txt
+dineroIV -l1-ubsize 16 -l1-usize 1024 -l1-uassoc 1 -l1-urepl l -l1-uccc -l2-ubsize 128 -l2-usize 1024 -l2-uassoc 1 -l2-urepl l -l2-uccc < prog_trace.din > main2.txt
+dineroIV -l1-ubsize 32 -l1-usize 1024 -l1-uassoc 1 -l1-urepl l -l1-uccc -l2-ubsize 128 -l2-usize 1024 -l2-uassoc 1 -l2-urepl l -l2-uccc < prog_trace.din > main3.txt
